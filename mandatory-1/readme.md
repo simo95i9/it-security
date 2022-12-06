@@ -59,6 +59,7 @@ this could be used to download and run a malicious script.
 ## A solution
 
 ```python
+# nslookup-invulnerable-take-1.py
 import subprocess
 
 def main():
@@ -107,6 +108,7 @@ before executing it in the shell, but there is still another way
 
 
  ```python
+ # nslookup-invulnerable-take-2.py
  import subprocess
  
  def main():
@@ -125,6 +127,22 @@ This solution puts the user-input in a list, thus making certain that one
 argument can't be interpreted as several arguments. We also remove the 
 `shell=True` paramter from the function call, I'm not sure why but it didn't
 work otherwise.
+
+If we try to enter malicious input the program will just crash.
+
+```shell
+$ python3 nslookup-invulnerable-take-2.py
+Traceback (most recent call last):
+  File "/Users/simon/Developer/dat21v2/it-security/mandatory-1/nslookup-invulnerable.py", line 22, in <module>
+    main()
+  File "/Users/simon/Developer/dat21v2/it-security/mandatory-1/nslookup-invulnerable.py", line 16, in main
+    output = subprocess.check_output(command, encoding="UTF-8")
+  File "/opt/homebrew/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 421, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+  File "/opt/homebrew/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/nslookup', "kea.dk; ls; echo 'oh no evil happened'"]' returned non-zero exit status 1.
+```
 
 
 ∎
