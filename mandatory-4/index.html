@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./assets/mvp.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+
+    <link rel="stylesheet" href="./assets/shades-of-purple.min.css">
+    <script src="./assets/highlight.min.js"></script>
+    <script src="./assets/markdown-it.min.js"></script>
+    <script>
+        function highlight(str, lang) {
+            return hljs.highlight(str, { language: lang }).value ?? ''
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+
+
+            const md = window.markdownit({
+                html: true,
+                typographer: true,
+                highlight: (str, lang) => highlight(str, lang)
+            })
+
+
+            const article = document.querySelector('article')
+            const content = await fetch('./readme.md').then(res => res.text())
+            article.innerHTML = md.render(content)
+        })
+    </script>
+</head>
+
+<body>
+    <main>
+        <article>
+        </article>
+    </main>
+</body>
+
+</html>

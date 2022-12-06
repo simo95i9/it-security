@@ -1,0 +1,73 @@
+:root {
+    /* Increase the default border radius */
+    --border-radius: 10px;
+}
+
+.hljs {
+    --color-text: #fff;
+}
+
+/* Use en-dash instead of bullet in unordered lists */
+ul li {
+    list-style-type: "–  ";
+}
+
+/* Make it possible to have a figcaption beneath figure > pre > code*/
+figure:has(pre) {
+    max-width: var(--width-card-wide);
+}
+
+figure figcaption {
+    text-align: center;
+}
+
+figure pre:has(+ figcaption) {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+figure pre + figcaption {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+/* Give images a little flair */
+main image,
+article img,
+section img {
+    box-shadow: var(--box-shadow) var(--color-shadow);
+    border: 1px solid var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+}
+
+
+/* Make images full-width, and crop height until aspect-ratio is satisfied  */
+.\31 x1 {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.\31 6x9 {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.\32 1x9 {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 21 / 9;
+}
+
+.\32 6x9 {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 26 / 9;
+}
+
